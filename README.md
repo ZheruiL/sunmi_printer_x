@@ -2,15 +2,9 @@
 
 sunmi printer x for flutter
 
-## Getting Started
+# result
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+https://github.com/ZheruiL/sunmi_printer_x/assets/27128660/e7c9ad74-864d-4495-a603-d1ba1bb7d508
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
