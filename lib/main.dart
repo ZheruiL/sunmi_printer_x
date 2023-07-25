@@ -50,7 +50,18 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          await SunmiPrinter().initPrinter();
+          try {
+            final initRes = await SunmiPrinter().initPrinter();
+            debugPrint('got printer:$initRes');
+          } catch (e) {
+            showDialog(
+              context: context,
+              builder: (context) => AlertDialog(
+                title: Text(e.toString()),
+              ),
+            );
+            return;
+          }
           final printerInfo = await SunmiPrinter().getCurrentPrinterInfo();
           debugPrint(printerInfo);
           http.Response response = await http.get(

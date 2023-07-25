@@ -44,18 +44,23 @@ class MainActivity : FlutterActivity() {
             when (call.method) {
                 // init printer, must be called before any other functions
                 "init" -> {
-                    PrinterSdk.getInstance().getPrinter(context, object : PrinterSdk.PrinterListen {
-                        override fun onDefPrinter(printer: PrinterSdk.Printer?) {
-                            if (selectPrinter == null) {
-                                selectPrinter = printer
-                            }
-                        }
+                    try {
+                        PrinterSdk.getInstance()
+                            .getPrinter(context, object : PrinterSdk.PrinterListen {
+                                override fun onDefPrinter(printer: PrinterSdk.Printer?) {
+                                    if (selectPrinter == null) {
+                                        selectPrinter = printer
+                                    }
+                                    result.success(printer?.queryApi()?.getInfo(PrinterInfo.NAME))
+                                }
 
-                        override fun onPrinters(printers: MutableList<PrinterSdk.Printer>?) {
-                            showPrinters.postValue(printers)
-                        }
-                    })
-                    result.success("ok1")
+                                override fun onPrinters(printers: MutableList<PrinterSdk.Printer>?) {
+                                    showPrinters.postValue(printers)
+                                }
+                            })
+                    } catch (e: Exception) {
+                        result.error("1", e.message, null)
+                    }
                 }
                 // get the current printer's information
                 "getCurrentPrinterInfo" -> {
